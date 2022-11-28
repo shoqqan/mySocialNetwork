@@ -70,7 +70,7 @@ const initialState:ProfilePageType = {
         },
 
     ],
-    newPostText: 'reduxff'
+    newPostText: ''
 }
 export const profileReducer = (state: ProfilePageType = initialState, action: ProfileActionType) => {
     switch (action.type) {
