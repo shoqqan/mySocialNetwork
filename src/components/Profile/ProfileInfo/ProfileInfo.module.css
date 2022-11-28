@@ -1,0 +1,17 @@
+.wallpaper img{
+    height: 30vh;
+}
+.profile{
+    display: flex;
+    column-gap: 10%;
+}
+.avatar{
+    flex-basis: 15%;
+    margin-top: 20px;
+}
+.avatar img{
+    height: 30vh;
+}
+.description{
+    align-self: center;
+}

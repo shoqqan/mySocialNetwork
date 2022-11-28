@@ -1,0 +1,40 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsitem {
+    width: 82%;
+    padding: 10px;
+    background-color: #709b9b;
+    display: flex;
+    flex-direction: column;
+
+    height: 154vh;
+}
+.item{
+    display: flex;
+    height: 50px;
+    padding: 10px;
+    column-gap: 10%;
+}
+.messages {
+    width: 50%;
+    padding: 20px;
+}
+
+.item:hover{
+    background-color: grey;
+}
+.item>a{
+    text-decoration: none;
+    /*align-self: center;*/
+    color:brown ;
+}
+.avatar{
+    width: 20%;
+}
+.avatar>img{
+    border-radius: 30%;
+    width: 100%;
+}
