@@ -31,7 +31,7 @@ function App(props: AppPropsType) {
                         <Route path={'/settings'} element={<Settings/>}/>
                         <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
                         <Route path={'*'} element={<div>404 NOT FOUND</div>}/>
-                        <Route path={'mySocialNetwork/'} element={<div>404 lfa</div>}/>
+                        <Route path={'/mySocialNetwork/'} element={<div>404 lfa</div>}/>
 
 
                     </Routes>
