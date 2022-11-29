@@ -9,10 +9,10 @@ type DialogsContainerPropsType = {
 }
 const DialogsContainer = (props: DialogsContainerPropsType) => {
     const state = props.store.getState()
-
+    let newMessageElement = state.dialogsPage.newMessageText
 
     const onAddMessage = () => {
-        let newMessageElement = state.dialogsPage.newMessageText
+
         if (newMessageElement.trim().length > 1) {
             props.store.dispatch(AddStateMessageActionCreator(newMessageElement))
             props.store.dispatch(OnChangeMessageTextActionCreator(''))
@@ -25,7 +25,7 @@ const DialogsContainer = (props: DialogsContainerPropsType) => {
     }
     return (
         <Dialogs addMessage={onAddMessage} messageChange={onMessageChange} dialogs={state.dialogsPage.dialogs}
-                 messages={state.dialogsPage.messages} newMessageElement={state.dialogsPage.newMessageText} key={v1()}/>
+                 messages={state.dialogsPage.messages} newMessageElement={state.dialogsPage.newMessageText}/>
     )
 };
 
