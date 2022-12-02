@@ -2,7 +2,6 @@ import {v1} from "uuid";
 
 type AddPostActionType = {
     type: 'ADD-POST'
-    postMessage: string
 }
 
 export type OnChangePostText = {
@@ -46,10 +45,9 @@ export type ProfileActionType =
     | OnChangeMessageText
     | AddStateMessageType
 export const AddLikeActionCreator = (id: string): AddLikeType => ({type: 'ADD-LIKE', id: id})
-export const addPostActionCreator = (postMessage: string): AddPostActionType => {
+export const addPostActionCreator = (): AddPostActionType => {
     return {
         type: 'ADD-POST',
-        postMessage: postMessage
     }
 }
 export const AddDislikeActionCreator = (id: string): AddDislikeType => ({type: 'ADD-DISLIKE', id: id})
@@ -59,7 +57,7 @@ export const onChangePostTextActionCreator = (postText: string): OnChangePostTex
         postText: postText
     }
 }
-const initialState:ProfilePageType = {
+const initialState: ProfilePageType = {
     posts: [
         {
             id: v1(),
@@ -78,30 +76,30 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Pr
             const newPost: PostType = {
                 id: v1(),
                 image: 'https://sun9-17.userapi.com/impg/ytugTtPFmctBiHjOlaOjhsVFolkbtum4skgWQg/F5-etE5XOIs.jpg?size=1342x1792&quality=96&sign=b31946091fb7191a048f2c38395cd168&type=album',
-                postText: action.postMessage,
+                postText: state.newPostText,
                 likes: 0,
                 dislikes: 0
             }
-            state.posts.push(newPost)
-            return state
+            state.newPostText = ''
+            return {...state, posts: [newPost, ...state.posts]}
         case 'ON-CHANGE-POST-TEXT':
             console.log(action.postText)
             state.newPostText = action.postText
-            return state
+            return {...state}
         case 'ADD-LIKE':
             state.posts.map(p => {
                 if (p.id === action.id) {
                     p.likes += 1
                 }
             })
-            return state
+            return {...state, posts: state.posts.map(p => ({...p}))}
         case 'ADD-DISLIKE':
             state.posts.map(p => {
                 if (p.id === action.id) {
                     p.dislikes += 1
                 }
             })
-            return state
+            return {...state, posts: state.posts.map(p => ({...p}))}
         default:
             return state
     }

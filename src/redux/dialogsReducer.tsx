@@ -20,7 +20,6 @@ export type DialogPageType = {
 
 type AddStateMessageType = {
     type: 'ADD-STATE-MESSAGE',
-    dialogMessage: string
 }
 type OnChangeMessageText = {
     type: 'ON-CHANGE-MESSAGE-TEXT'
@@ -36,13 +35,12 @@ export const OnChangeMessageTextActionCreator = (messageText: string): OnChangeM
         messageText: messageText
     }
 }
-export const AddStateMessageActionCreator = (dialogMessage: string): AddStateMessageType => {
+export const AddStateMessageActionCreator = (): AddStateMessageType => {
     return {
-        type: 'ADD-STATE-MESSAGE',
-        dialogMessage: dialogMessage
+        type: 'ADD-STATE-MESSAGE'
     }
 }
-const initialState:DialogPageType = {
+const initialState: DialogPageType = {
     dialogs: [
         {
             id: v1(),
@@ -95,17 +93,16 @@ const initialState:DialogPageType = {
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionType) => {
     switch (action.type) {
         case 'ON-CHANGE-MESSAGE-TEXT':
-            state.newMessageText = action.messageText
-            return state
+            return {...state, newMessageText: action.messageText}
         case 'ADD-STATE-MESSAGE':
             const newMessage: MessagesType = {
                 id: v1(),
                 image: 'https://sun9-17.userapi.com/impg/ytugTtPFmctBiHjOlaOjhsVFolkbtum4skgWQg/F5-etE5XOIs.jpg?size=1342x1792&quality=96&sign=b31946091fb7191a048f2c38395cd168&type=album',
-                innerMessage: action.dialogMessage,
+                innerMessage: state.newMessageText,
                 isMyMessage: true
             }
-            state.messages.push(newMessage)
-            return state
+
+            return {...state, messages: [...state.messages, newMessage]}
         default:
             return state
     }
