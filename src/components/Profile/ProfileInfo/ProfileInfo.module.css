@@ -1,5 +1,6 @@
 .wallpaper img{
     height: 30vh;
+    border-radius: 50%;
 }
 .profile{
     display: flex;
@@ -8,6 +9,7 @@
 .avatar{
     flex-basis: 15%;
     margin-top: 20px;
+    border-radius: 10%;
 }
 .avatar img{
     height: 30vh;
